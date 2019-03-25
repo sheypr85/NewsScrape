@@ -11,7 +11,9 @@ var PORT = 3000;
 // Initialize Express
 var app = express();
 // Parse request body as JSON
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({
+    extended: true
+}));
 app.use(express.json());
 // Make public a static folder
 // app.use(express.static("public"));
@@ -19,45 +21,45 @@ app.use(express.json());
 // Routes
 
 // A GET route for scraping the echoJS website
-app.get("/scrape", function(req, res) {
+app.get("/scrape", function (req, res) {
     // First, we grab the body of the html with axios
-    axios.get("https://www.cnet.com/news/").then(function(response) {
-      // Then, we load that into cheerio and save it to $ for a shorthand selector
-      var $ = cheerio.load(response.data);
-  
-      var collection = $("div.fdListingContainer div.col-8.fdListing").children("div.row").find("div.riverPost") 
+    axios.get("https://www.cnet.com/news/").then(function (response) {
+        // Then, we load that into cheerio and save it to $ for a shorthand selector
+        var $ = cheerio.load(response.data);
 
-      // filter out to only riverPost
-      $(collection).each(function(i, element) {
-        // Save an empty result object
-        var result = {};
-  
-        // Add the text and href of every link, and save them as properties of the result object
-        result.title = $(this)
-          .find("div.col-5.assetText h3 a")
-          .text().trim();
-        // result.link = $(this)
-        //   .children("a")
-        //   .attr("href");
+        var collection = $("div.fdListingContainer div.col-8.fdListing").children("div.row").find("div.riverPost")
 
-          result.summary = $(this)
-          .find("div.col-5.assetText p a")
-          .text().trim();
+        // filter out to only riverPost
+        $(collection).each(function (i, element) {
+            // Save an empty result object
+            var result = {};
 
-          result.link = "https://www.cnet.com" + $(this)
-          .find("div.col-5.assetText h3 a").attr("href")
+            // Add the text and href of every link, and save them as properties of the result object
+            result.title = $(this)
+                .find("div.col-5.assetText h3 a")
+                .text().trim();
 
-  
-        // Create a new Article using the `result` object built from scraping
-        console.log(result)
-      });
-  
-      // Send a message to the client
-      res.send("Scrape Complete");
+            result.summary = $(this)
+                .find("div.col-5.assetText p a")
+                .text().trim();
+
+            result.link = "https://www.cnet.com" + $(this)
+                .find("div.col-5.assetText h3 a").attr("href");
+
+            result.picture = $(this)
+                .find("div.col-2.assetThumb a figure.img span img").attr("data-original")
+
+
+            // Create a new Article using the `result` object built from scraping
+            console.log(result)
+        });
+
+        // Send a message to the client
+        res.send("Scrape Complete");
     });
-  });
+});
 
 
-  app.listen(PORT, function() {
+app.listen(PORT, function () {
     console.log("App running on port " + PORT + "!");
-  });
+});
