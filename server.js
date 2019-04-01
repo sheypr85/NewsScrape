@@ -35,7 +35,7 @@ app.use(routes);
 
 // Routes
 
-// A GET route for scraping the echoJS website
+// A GET route for scraping 
 app.get("/scrape", function (req, res) {
     // First, we grab the body of the html with axios
     axios.get("https://www.cnet.com/news/").then(function (response) {

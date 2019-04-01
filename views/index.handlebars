@@ -4,28 +4,13 @@
               <h1 class="display-4">Newscrape!</h1>
               <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
               <hr class="my-4">
-              <a class="btn btn-mycolor btn-lg" href="#" role="button">Learn more</a>
+              <a class="btn btn-mycolor btn-lg" href="/scrape" role="button">Scrape</a>
             </div>
       
       </div>
     <div id= "articles" class="row">
-        <div class="card">
-            <div class="card-header">
-                HTC's new Vive Focus Plus VR headset is twice the price of Oculus Quest
-            </div>
-          
-            <div class="card-body">
-                <div class="media">
-                    <img src="https://cnet1.cbsistatic.com/img/9I94R2hFAawP06plx2aXiy4-krg=/194x194/2019/02/21/463e8e42-9bdf-4957-9f5c-8609634d9a6c/8e9c719f-c9ba-4315-aee0-1ec4fd8ad7f6.jpg" class="align-self-center mr-3" alt="...">
-                    <div class="media-body">
-              <blockquote class="blockquote mb-0">
-                <p>The Vive Focus Plus arrives April 15, for $799.</p>
-
-                <button type="button" class="btn btn-mysave" data-dismiss="modal">Save Article</button>
-                <button type="button" class="btn btn-myview">View Article</button>
-              </blockquote>
-            </div>
-          </div>
-        </div>
-    </div>
+        {{#each articles}}
+ 
+      {{>articles/articles_card}}
+        {{/each}}
     </div>
