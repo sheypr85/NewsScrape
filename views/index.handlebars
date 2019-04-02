@@ -4,13 +4,13 @@
               <h1 class="display-4">Newscrape!</h1>
               <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
               <hr class="my-4">
-              <a class="btn btn-mycolor btn-lg" href="/scrape" role="button">Scrape</a>
+              <a class="btn btn-mycolor btn-lg" id="scrape" role="button">Scrape</a>
             </div>
       
 </div>
     <div id= "articles" class="container">
         {{#each articles}}
- 
+
       {{>articles/articles_card}}
         {{/each}}
     </div>

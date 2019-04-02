@@ -43,40 +43,34 @@ app.get("/scrape", function (req, res) {
         var $ = cheerio.load(response.data);
 
         var collection = $("div.fdListingContainer div.col-8.fdListing").children("div.row").find("div.riverPost")
-
+        var allArticles = []
         // filter out to only riverPost
         $(collection).each(function (i, element) {
             // Save an empty result object
             var result = {};
 
             // Add the text and href of every link, and save them as properties of the result object
-            result.title = $(this)
-                .find("div.col-5.assetText h3 a")
-                .text().trim();
+            result.title = $(this).find("div.col-5.assetText h3 a").text().trim();
 
-            result.summary = $(this)
-                .find("div.col-5.assetText p a")
-                .text().trim();
+            result.summary = $(this).find("div.col-5.assetText p a").text().trim();
 
-            result.link = "https://www.cnet.com" + $(this)
-                .find("div.col-5.assetText h3 a").attr("href");
+            result.link = "https://www.cnet.com" + $(this).find("div.col-5.assetText h3 a").attr("href");
 
-            result.picture = $(this)
-                .find("div.col-2.assetThumb a figure.img span img").attr("data-original")
+            result.picture = $(this).find("div.col-2.assetThumb a figure.img span img").attr("data-original")
 
 
             console.log(result)
-
+            allArticles.push(result)
             // Create a new Article using the `result` object built from scraping
-            db.Article.create(result)
-                .then(function (dbArticle) {
-                    // View the added result in the console
-                    console.log(dbArticle);
-                })
-                .catch(function (err) {
-                    // If an error occurred, log it
-                    console.log(err);
-                });
+            // db.Article.create(result)
+            //     .then(function (dbArticle) {
+            //         // View the added result in the console
+            //         console.log(dbArticle);
+            //     })
+            //     .catch(function (err) {
+            //         // If an error occurred, log it
+            //         console.log(err);
+            //     });
         });
 
         // Send a message to the client
