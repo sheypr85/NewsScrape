@@ -1,15 +1,26 @@
 <div class="container">
-      <div class="row">
-          <div class="jumbotron jumbocolor" >
-              <h1 class="display-4">Newscrape!</h1>
-              <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-              <hr class="my-4">
-              <button class="btn btn-mycolor btn-lg" id="scrape" role="button">Scrape</button>
-            </div>
-      
-</div>
-    <div id= "articles" class="container">
-        {{#each articles}}
-          {{>articles/articles_card}}
-        {{/each}}
+  <div class="row">
+    <div class="jumbotron jumbocolor">
+      <h1 class="display-4">Newscrape!</h1>
+      <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to
+        featured content or information.</p>
+      <hr class="my-4">
+      <button class="btn btn-mycolor btn-lg" id="scrape" role="button">Scrape</button>
     </div>
+
+  </div>
+  <div id="articles" class="container">
+
+    {{#if saved}}
+    <p>SAVED</p>
+      {{#each articles}}
+        {{>articles/articles_saved}}
+      {{/each}}
+
+    {{else}}
+        <p>NOT SAVED</p>
+      {{#each articles}}
+        {{>articles/articles_card}}
+      {{/each}}
+    {{/if}}
+  </div>

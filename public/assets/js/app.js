@@ -29,4 +29,18 @@ $(function () {
     });
 
   });
+
+  $(".article-note").on("click", function () {
+    var id = $(this).data("id");
+
+    // Now make an ajax call for the Article
+    $.ajax({
+      method: "PUT",
+      url: "/articles/" + id
+    }).then(function (data) {
+      {location.reload()}
+    });
+
+  });
+
 });

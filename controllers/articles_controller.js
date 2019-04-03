@@ -25,7 +25,8 @@ router.get("/articles/new", function (req, res) {
     Article.find({ saved:false})
         .then(function (data) {
             let hbsObject = {
-                articles: data,
+                saved: false,
+                articles: data
               };
               console.log(hbsObject);
               res.render('index', hbsObject);
@@ -41,7 +42,8 @@ router.get("/articles/saved", function (req, res) {
     Article.find({ saved:true})
         .then(function (data) {
             let hbsObject = {
-                articles: data,
+                saved: true,
+                articles: data
               };
               console.log(hbsObject);
               res.render('index', hbsObject);
