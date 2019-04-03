@@ -52,4 +52,39 @@ router.get("/articles/saved", function (req, res) {
         });
 });
 
+router.get("/articles/:id", function (req, res) {
+    // Grab every document in the Articles collection
+    Article.findOne({ _id: req.params.id })
+        .then(function (data) {
+            let hbsObject = {
+                articles: data,
+              };
+              console.log(hbsObject);
+              res.json(hbsObject);
+            //   res.render('index', hbsObject);
+        })
+        .catch(function (err) {
+            // If an error occurred, send it to the client
+            res.json(err);
+        });
+});
+
+
+
+router.put("/articles/:id", function (req, res) {
+    // Grab every document in the Articles collection
+    Article.findOneAndUpdate({ _id: req.params.id }, {$set:{saved:true}}, {new:true})
+        .then(function (data) {
+            let hbsObject = {
+                articles: data,
+              };
+              res.json(hbsObject);
+              console.log(hbsObject);
+            //   res.render('index', hbsObject);
+        })
+        .catch(function (err) {
+            // If an error occurred, send it to the client
+            res.json(err);
+        });
+});
 module.exports = router;

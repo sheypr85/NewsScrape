@@ -1,17 +1,17 @@
 <div class="card mb-4 mr-5">
   <div class="card-header">
-    {{this.title}}
+    {{title}}
   </div>
 
   <div class="card-body">
     <div class="media">
-      <img src={{this.picture}} class="align-self-center mr-3" alt="...">
+      <img src={{picture}} class="align-self-center mr-3" alt="...">
       <div class="media-body">
         <blockquote class="blockquote mb-0">
-          <p>{{this.summary}}</p>
+          <p>{{summary}}</p>
 
-          <button type="button" class="btn btn-mysave" data-dismiss="modal">Save Article</button>
-          <button type="button" class="btn btn-myview">View Article</button>
+          <a type="button" class="btn btn-mysave" data-id={{id}}>Save Article</a>
+          <a type="button" href={{link}} class="btn btn-myview">View Article</a>
         </blockquote>
       </div>
     </div>
