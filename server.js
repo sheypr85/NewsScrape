@@ -10,17 +10,9 @@ var PORT = 3000;
 
 // Initialize Express
 var app = express();
-// Parse request body as JSON
-app.use(express.urlencoded({
-    extended: true
-}));
+app.use(express.urlencoded({extended: true}));
 app.use(express.json());
-// Make public a static folder
 app.use(express.static("public"));
-mongoose.connect("mongodb://localhost/NewsScraper", {
-    useNewUrlParser: true
-});
-
 var exphbs = require ("express-handlebars");
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
