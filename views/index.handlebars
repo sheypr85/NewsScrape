@@ -13,13 +13,13 @@
   <div id="articles" class="container">
 
     {{#if saved}}
-    <p>SAVED</p>
+    
       {{#each articles}}
         {{>articles/articles_saved}}
       {{/each}}
 
     {{else}}
-        <p>NOT SAVED</p>
+   
       {{#each articles}}
         {{>articles/articles_card}}
       {{/each}}
