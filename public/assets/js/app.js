@@ -77,4 +77,15 @@ $(function () {
 
   });
 
+  $(".all-delete").on("click", function(event) {
+    // Send the DEL request
+    $.ajax({
+      // data: change,
+      method: "DELETE",
+      url: "/articles/"
+    }).then(
+      function() {  location.reload()  }
+    );
+  });
+ 
 });

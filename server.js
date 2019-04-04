@@ -77,7 +77,7 @@ app.get("/scrape", function (req, res) {
 
 
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/NewsScraper";
 
 // Connect to the Mongo DB
 mongoose.connect(MONGODB_URI);

@@ -4,7 +4,7 @@
 }
 
 .btn-mycolor {
-    background-color: #e6dee8;
+    background-color: darkseagreen;
 }
 
 .btn-mysave {
@@ -13,4 +13,20 @@
 
 .btn-myview{
     background-color: #e9e3ed;
+}
+
+.btn-bye {
+    background-color: coral;
+}
+
+.btn-notebye {
+    background-color: coral;
+}
+
+.btn-myarticle {
+    background-color: darkseagreen;
+}
+
+.btn-scrapy {
+    background-color: azure;
 }

@@ -150,5 +150,16 @@ router.post("/articles/:id", function(req, res) {
       });
   });
 
+  router.delete("/articles/", function(req, res) {
+      Article.collection.drop()
+      .then(function(result) {
+         res.json(result)
+      })
+      .catch(function(err) {
+        res.json(err);
+      });
+  });
+
+  
 
 module.exports = router;
