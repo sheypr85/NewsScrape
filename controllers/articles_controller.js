@@ -42,6 +42,7 @@ router.get("/articles/new", function (req, res) {
 router.get("/articles/saved", function (req, res) {
     // Grab every document in the Articles collection
     Article.find({ saved:true})
+    .populate("notes")
         .then(function (data) {
             let hbsObject = {
                 saved: true,
@@ -49,6 +50,7 @@ router.get("/articles/saved", function (req, res) {
               };
               console.log(hbsObject);
               res.render('index', hbsObject);
+            // res.json(hbsObject);
         })
         .catch(function (err) {
             // If an error occurred, send it to the client
@@ -108,4 +110,23 @@ router.post("/articles/:id", function(req, res) {
         res.json(err);
       });
   });
+
+
+  router.get("/articles/:id", function(req, res) {
+    // Create a new note and pass the req.body to the entry
+        Note.create(req.body)
+      .then(function(dbNote) {
+        return Article.findOneAndUpdate({ _id: req.params.id }, { $push: { notes: dbNote._id }}, { new: true });
+      })
+      .then(function(dbArticle) {
+        // If we were able to successfully update an Article, send it back to the client
+        res.json(dbArticle);
+      })
+      .catch(function(err) {
+        // If an error occurred, send it to the client
+        res.json(err);
+      });
+  });
+
+
 module.exports = router;
