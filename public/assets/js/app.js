@@ -65,4 +65,16 @@ $(function () {
 
   });
 
+  $(".article-delete").on("click", function () {
+    var id = $(this).data("id")
+    // Now make an ajax call for the Article
+    $.ajax({
+      method: "DELETE",
+      url: "/articles/" + id
+    }).then(function (data) {
+      {location.reload()}
+    });
+
+  });
+
 });
