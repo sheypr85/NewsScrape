@@ -6,7 +6,7 @@ var Article = require('../models/Article.js');
 
 var Note = require('../models/Note')
 
-router.get("/articles", function (req, res) {
+router.get("/", function (req, res) {
     // Grab every document in the Articles collection
     Article.find({})
         .then(function (data) {

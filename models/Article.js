@@ -11,7 +11,6 @@ var ArticleSchema = new Schema({
     type: String,
     required: true
   },
-  // `link` is required and of type String
   link: {
     type: String,
     required: true
@@ -22,13 +21,14 @@ var ArticleSchema = new Schema({
   summary: {
     type: String
   },
-  saved: {type: Boolean, 
-  required: true, 
-  default: false
+  saved: {
+    type: Boolean, 
+    required: true, 
+    default: false
  }, 
- notes: [{ 
-  type: Schema.Types.ObjectId, 
-  ref: "Note"
+  notes: [{ 
+    type: Schema.Types.ObjectId, 
+    ref: "Note"
  }],
 });
 
