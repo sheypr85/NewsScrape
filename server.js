@@ -51,11 +51,8 @@ app.get("/scrape", function (req, res) {
 
             // Add the text and href of every link, and save them as properties of the result object
             result.title = $(this).find("div.col-5.assetText h3 a").text().trim();
-
             result.summary = $(this).find("div.col-5.assetText p a").text().trim();
-
             result.link = "https://www.cnet.com" + $(this).find("div.col-5.assetText h3 a").attr("href");
-
             result.picture = $(this).find("div.col-2.assetThumb a figure.img span img").attr("data-original")
 
 
@@ -64,18 +61,17 @@ app.get("/scrape", function (req, res) {
             // Create a new Article using the `result` object built from scraping
             db.Article.create(result)
                 .then(function (dbArticle) {
-                    // View the added result in the console
-                    console.log(dbArticle);
                 })
                 .catch(function (err) {
-                    // If an error occurred, log it
-                    console.log(err);
+                
                 });
         });
 
         // Send a message to the client
-        res.send("Scrape Complete");
+        // res.send("Scrape Complete");
+        
     });
+    res.redirect('/articles/new');
 });
 
 

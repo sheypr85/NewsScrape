@@ -12,7 +12,7 @@ $(function () {
     })
       // With that done, add the note information to the page
       .then(function (data) {
-        console.log(data);
+        window.location.replace('/articles/new')
   
       });
   });
@@ -32,10 +32,17 @@ $(function () {
 
   });
 
-  $(".article-note").on("click", function(){
-    var id = $(this).data("id");
 
+  $(".article-note").on("click", function () {
+    var id = $(this).data("id")
+    var newel = "#noteForm-" + id
+
+    var notetext = $(newel).val()
+    var data = { 'body': notetext }
+    
+    // Now make an ajax call for the Article
     $.ajax({
+      data: data,
       method: "POST",
       url: "/articles/" + id
     }).then(function (data) {
@@ -45,13 +52,13 @@ $(function () {
   });
 
 
-  $(".article-note").on("click", function () {
-    var id = $(this).data("id");
-
+  $(".deleteNote").on("click", function () {
+    var id = $(this).data("id")
+    
     // Now make an ajax call for the Article
     $.ajax({
-      method: "PUT",
-      url: "/articles/" + id
+      method: "DELETE",
+      url: "/notes/" + id
     }).then(function (data) {
       {location.reload()}
     });

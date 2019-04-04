@@ -41,14 +41,14 @@
           
         <form>
           <div class="form-group">
-            <label for="exampleFormControlTextarea1"></label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <label for="noteForm-{{id}}"></label>
+            <textarea class="form-control" id="noteForm-{{id}}" rows="3"></textarea>
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-mysave article-note" data-id={{id}}>Save Notes</button>
+        <button type="button" class="btn btn-primary article-note" data-id="{{id}}">Save Notes</button>
       </div>
     </div>
   </div>

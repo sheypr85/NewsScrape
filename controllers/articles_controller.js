@@ -128,5 +128,16 @@ router.post("/articles/:id", function(req, res) {
       });
   });
 
+  router.delete("/notes/:id", function(req, res) {
+    Note.deleteOne({_id: req.params.id})
+      .then(function(data) {
+         res.json(data)
+      })
+      .catch(function(err) {
+        // If an error occurred, send it to the client
+        res.json(err);
+      });
+  });
+
 
 module.exports = router;
