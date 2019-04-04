@@ -17,6 +17,8 @@ $(function () {
       });
   });
 
+  
+
   $(".btn.btn-mysave").on("click", function () {
     var id = $(this).data("id");
 
@@ -29,6 +31,19 @@ $(function () {
     });
 
   });
+
+  $(".article-note").on("click", function(){
+    var id = $(this).data("id");
+
+    $.ajax({
+      method: "POST",
+      url: "/articles/" + id
+    }).then(function (data) {
+      {location.reload()}
+    });
+
+  });
+
 
   $(".article-note").on("click", function () {
     var id = $(this).data("id");
